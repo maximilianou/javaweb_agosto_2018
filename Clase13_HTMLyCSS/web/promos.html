@@ -16,30 +16,26 @@
                 <li><a href="futuros.html">Futuros</a></li>
             </ul>
         </nav>
-
         <div id="panelLocal" class="panelsito " >
+            <ul>
+                <li>Desarrollo II, 5000</li>
+                <li>Desarrollo III, 7000</li>
+                <li>Desarrollo IV, 10000</li>
+                <li>Desarrollo V, 15000</li>
+                <li>Codo a Codo Intensivo, 0</li>
+                <li>Codo a Codo Super Intensivo, 0</li>
+            </ul>
+        </div>
+        <div id="panelRemoto" class="panelsito ">
+            <ul>
+                <li>Javascript, 5000</li>
+                <li>HTML y CSS, 7000</li>
+                <li>Base De Datos, 10000</li>
+                <li>Paradigma Funcional, 15000</li>
+                <li>Paradigma Relacional, 1000</li>
+                <li>Paradigma Objetos y NoSQL, 655470</li>
+            </ul>
         </div>
 
-        <div id="panelRemoto" class="panelsito ">
-            
-        </div>
-        
-        <div id="panelPromos" class="panelsito ">
-        </div>
-            
-        
-<script type="text/template" id='plantillaListado'>
-`           <ul>
-            ${listado.map( actual =>             
-                `
-                   <li id="item_${actual.id}" >
-                           ${actual.nombre}, ${actual.precio}
-                   </li>
-                `).join('')            
-            }
-            </ul>
-`            
-</script>
-<script type="text/javascript"  src="js/cargando.js"></script>
     </body>
 </html>

@@ -1,0 +1,32 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: peru;
+}
+li {
+    list-style-type: none;
+}
+nav{
+    margin: 10px;
+}
+nav li{
+    width: 20%;
+    background-color: brown;
+    color: white;
+    display: inline-block;
+    padding: 10px 20px;
+}
+.panelsito{
+    background-color: lawngreen;
+    width:40%; 
+    display: inline-block; 
+}
+.panelsito li {
+    background-color: darkgreen; 
+    color: white; 
+    font-weight: bolder;
+    border-radius: 10px;
+    padding: 10px;
+}
