@@ -23,6 +23,11 @@ public class MesaDulce extends HttpServlet {
             throws ServletException, IOException {
         // TODO: Aqui programare lo que es Insertar algo Nuevo de Datos, 
         // HTTP POST === SQL INSERT
+        
+//        response.getWriter().print("123456"); // int double float
+//        response.getWriter().print("\"Texto\""); // String
+//        response.getWriter().print("[]"); // Listado de datos
+        response.getWriter().print("{}"); // objeto
     }
 
     @Override
