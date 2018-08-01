@@ -27,7 +27,10 @@ public class MesaDulce extends HttpServlet {
 //        response.getWriter().print("123456"); // int double float
 //        response.getWriter().print("\"Texto\""); // String
 //        response.getWriter().print("[]"); // Listado de datos
-        response.getWriter().print("{}"); // objeto
+//        response.getWriter().print("{}"); // objeto
+        response.getWriter().print(" [ 123456 , "); // int double float
+        response.getWriter().print(" \"Texto\" ] "); // String
+        
     }
 
     @Override
