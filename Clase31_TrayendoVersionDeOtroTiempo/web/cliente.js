@@ -1,25 +1,33 @@
-
-/* If you're feeling fancy you can add interactivity 
-    to your site with Javascript */
-
-// prints "hi" in the browser's dev tools console
-
-
 class Reposteria {
   
   static publicar(){
     console.log('[..] Buenos Aires Programando Online!!');
+
+    /*
+    var variableViejaForma =  [ 44 , 88 ];// VIEJO
+    let variableLocal = "2";
+    let objetoJSON = { "nombre": "Roberto" }; // new Object();
+    const variableConstanteNoDebesCambiarElCopntenido = objetoJSON;
+    //variableConstanteNoDebesCambiarElCopntenido = []; // MAL
+    variableConstanteNoDebesCambiarElCopntenido.nombre = "Mario";
+    objetoJSON = { "precio": 55000 } ;
+    */    
+
+
+    // INPUT, obtener las variables
+    let producto = {}; // defino un Ojbeto para tomar lso parametros
+    producto.titulo = document.querySelector('#producto_titulo').value;
+    producto.descripcion = document.querySelector('#producto_descripcion').value;
     
-    //alert(12345678);
+    // Enviar los parametros de INPUT al Servidro
+    //   convetirlo a un formato que lo entienda el servidor y cliente
     
-//    document.querySelector('#panelMensaje').innerHTML += "Algo! ";
-//    document.querySelector('section > h3').innerHTML = "Algo! ";
-    //alert( document.querySelector('#panelMensaje')    );
-    //alert( document.querySelector('#producto_tit') );
-    
+    // Respuesta del Servidor mostrarla en pantalla
+    //   vendra en el formato que entienda el servidor y cliente
+    //   
+    // OUTPUT, mostrarlas visualmante
     document.querySelector('#panelMensaje').innerHTML 
-      += document.querySelector('#producto_titulo').value
-      + document.querySelector('#producto_descripcion').value;
+            += producto.titulo + ", " + producto.descripcion;
     
     
     console.log('[OK] Buenos Aires Programando Online!!');
