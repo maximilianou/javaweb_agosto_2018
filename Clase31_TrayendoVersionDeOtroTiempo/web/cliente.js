@@ -19,12 +19,16 @@ class Reposteria {
     producto.titulo = document.querySelector('#producto_titulo').value;
     producto.descripcion = document.querySelector('#producto_descripcion').value;
     
-    // Enviar los parametros de INPUT al Servidro
+    // 1. Enviar los parametros de INPUT al Servidro
     //   convetirlo a un formato que lo entienda el servidor y cliente
-    
-    // Respuesta del Servidor mostrarla en pantalla
+    //   Formatod e la comunicacion Client/Server es en JSON 
+      
+      
+    // 2. Respuesta (cambiada) del Servidor mostrarla en pantalla
     //   vendra en el formato que entienda el servidor y cliente
-    //   
+    //   Formatod e la comunicacion Client/Server es en JSON 
+
+        
     // OUTPUT, mostrarlas visualmante
     document.querySelector('#panelMensaje').innerHTML 
             += producto.titulo + ", " + producto.descripcion;
