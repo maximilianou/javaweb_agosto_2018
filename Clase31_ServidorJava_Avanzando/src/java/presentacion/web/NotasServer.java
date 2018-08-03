@@ -19,7 +19,7 @@ public class NotasServer extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 // aqui seria para consultar HTTP POST === SQL INSERT
        System.out.println("!!! Servidor: Metodo Post, insertar");
-       response.getWriter().print("Servidor: Metodo Post, insertar");
+       response.getWriter().print("\"Servidor: Metodo Post, insertar\"");
     }
 
     @Override
