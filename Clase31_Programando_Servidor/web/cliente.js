@@ -28,9 +28,6 @@ class Distribuidora {
                     document.querySelector("#panelMensajes").innerHTML = 'ERROR: ' + ex.message;
                 });
 
-
-
-
 // 3. OUTPUT
         document.querySelector("#panelMsg").innerHTML = valorRespuesta;
 
