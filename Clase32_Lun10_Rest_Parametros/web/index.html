@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+  <head>
+    
+    <title>Maquetando</title>
+    
+    <link rel="stylesheet" href="estilo.css">
+
+    <script src="cliente.js" defer></script>
+
+  </head>  
+  
+  <body>
+    <header>Encabezado</header>
+    
+    <nav>
+      <ul>
+        <li>Maqueta Uno</li>
+        <li>Maqueta Dos</li>
+        <li>Maqueta Tres</li>
+      </ul>
+    </nav>
+    
+      <section>
+        
+        <h3>Tortas</h3>
+        
+        <article> Selva Negra
+        </article>
+        
+        <article>Lemon Pie
+        </article>
+        
+        <div  id='panelMensaje'>
+          Mensaje:
+        </div>
+        
+        <div  id='panelResultados'>
+          Resultado:
+        </div>
+
+        <div  id='panelMensajes'>
+          MensajeS:
+        </div>
+        
+      </section>
+
+    <aside>
+      Formulario:
+      
+      <input type='text' id='producto_titulo' />
+      
+      <textarea 
+                rows='10' cols='20'
+                id='producto_descripcion' 
+                ></textarea>
+      
+      <button    
+              onclick='Reposteria.publicar();' 
+              id="btnPublicar" 
+              class=""  
+              >
+        Presione Aqui!!!
+      </button>
+    </aside>
+    
+    <footer>Pie de Paginga
+      
+<svg height="150" width="500">
+  <defs>
+    <radialGradient id="grad1" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+      <stop offset="0%" 
+            style="stop-color:rgb(255,255,255);
+      stop-opacity:0" />
+      <stop offset="100%" 
+            style="stop-color:rgb(0,0,255);stop-opacity:1"       />
+    </radialGradient>
+  </defs>
+  <ellipse cx="200" cy="70" rx="85" ry="55" fill="url(#grad1)" />
+</svg>      
+      
+    </footer>
+    
+  </body>
+  
+</html>
