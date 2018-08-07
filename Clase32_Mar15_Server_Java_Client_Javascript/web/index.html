@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+  <head>
+    
+    <title>Golosinas!</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="estilo.css" />
+
+    <script src="cliente.js" defer></script>
+    
+  </head>  
+  
+  <body>
+    
+    <header> Kiosco los del Sur
+    </header>
+
+    <nav>
+      <ul>
+        <li>Chupetines</li>
+        <li>Caramelos</li>
+        <li>Chicles</li>
+      </ul>
+    </nav>
+    
+    <section>
+      <h2>Venta de Golosinas</h2>
+      <article>
+        <h3>Alfajor</h3>
+        Alfajores Capitan
+      </article>
+      <article>
+        <h3>Galletita</h3>
+        Rodesia
+      </article>
+      <article>
+        <h3>Chicle</h3>
+        Chicle Jirafa
+      </article>
+      <article>
+        <h3>Chupetin</h3>
+        TopoLin Sorpresa
+      </article>
+      <div id="panelMsg">
+        Mensaje:
+      </div>
+      <div id="panelResultados">
+        Mensaje:
+      </div>
+      <div id="panelMensajes">
+        Mensaje:
+      </div>
+    </section>
+
+    <aside>
+      
+      Formulario:
+      
+      <input type="text" id="golosina_titulo" />
+      
+      <textarea cols="20" rows="5" 
+                id="golosina_descripcion"
+                ></textarea>
+      
+      <button 
+              onclick="Distribuidora.ofertar();"
+              >Presione!!</button>
+      
+      
+    </aside>
+    
+    <footer> 
+      Pie de Pagina
+      
+<svg height="150" width="500">
+  <defs>
+    <radialgradient id="grad1" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+      <stop offset="0%" style="stop-color:rgb(255,255,255);
+      stop-opacity:0" />
+      <stop offset="100%" style="stop-color:rgb(0,0,255);stop-opacity:1" />
+    </radialgradient>
+  </defs>
+  <ellipse cx="200" cy="70" rx="85" ry="55" fill="url(#grad1)" />
+</svg>
+      
+    </footer>
+
+  </body>
+</html>
