@@ -13,7 +13,7 @@ public class GolosinaServer extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
        // HTTP GET === SQL SELECT
        System.out.println("!!! GoloServer GET consultar ");
-       response.getWriter().print("GoloServer GET consultar ");
+       response.getWriter().print("\"GoloServer GET consultar\"");
     }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -24,10 +24,15 @@ public class GolosinaServer extends HttpServlet {
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
        // HTTP PUT === SQL UPDATE
+        System.out.println("!!! GoloServer PUT Actualizar ");
+       resp.getWriter().print("\"GoloServer PUT Actualizar \"");
        
     }
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
        // HTTP DELETE === SQL DELETE
+        System.out.println("!!! GoloServer DELETE === Borrar ");
+       resp.getWriter().print("\"GoloServer DELETE === Borrar \"");
+       
     }
 }
