@@ -18,7 +18,7 @@ class Notas{
             let persona = {};
             persona.titulo = document.querySelector("#nota_titulo").value;
             let personaStringJSON = JSON.stringify(persona);
-            let respuesta = await fetch("NotasSer",
+            let respuesta = await fetch("NotasServer",
                     {method: 'POST', body: personaStringJSON});
             let datotexto = JSON.parse(await respuesta.text());
             document.querySelector('#panelResultados').innerHTML = datotexto;
