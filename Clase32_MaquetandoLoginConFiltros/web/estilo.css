@@ -8,7 +8,10 @@ body{
 }
 .panelPrincipal{
     display: inline-block;
+    float: left;
+    margin: 2px;
     width: 32%;
+    min-width: 300px;
     min-height: 300px;
     background-color: orange;
 }
@@ -23,4 +26,8 @@ body{
 }
 #panelMsgERROR{
     background-color: red;
+}
+button{
+    min-height: 50px;
+    width: 100%;
 }

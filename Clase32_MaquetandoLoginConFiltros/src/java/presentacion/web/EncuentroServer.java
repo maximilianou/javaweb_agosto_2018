@@ -18,10 +18,11 @@ public class EncuentroServer extends HttpServlet {
         Registro login = Uso.CONVERTIR.fromJson( req.getReader(), Registro.class);
         if( EntidadRegistral.esta(login) ){
             req.getSession().setAttribute("Usuario", login);
-        System.out.println("... EncuentroServer ..." + req.getSession().getAttribute("Usuario") );
-            
+            System.out.println("... EncuentroServer logIN ..." + req.getSession().getAttribute("Usuario") );
             resp.getWriter().print( Uso.CONVERTIR.toJson("OK " + req.getSession().getAttribute("Usuario")) );
         }else{
+            req.getSession().removeAttribute("Usuario");
+            System.out.println("... EncuentroServer logOUT ..." + req.getSession().getAttribute("Usuario") );
             resp.getWriter().print( Uso.CONVERTIR.toJson("Olvidate, equivocaste usuario o clave!!!" + (new java.util.Date())) );
         }
     }
