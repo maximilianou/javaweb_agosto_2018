@@ -14,7 +14,10 @@ class Registro {
             registro.clave = document.querySelector("#reg_clave").value;
             let registroStringJSON = JSON.stringify(registro);
             let respuesta = await fetch("RegistroServer",
-                    {method: 'POST', body: registroStringJSON});
+                    {method: 'POST', body: registroStringJSON,
+             /*credentials: 'include'  */
+              credentials: 'same-origin' 
+            });
             //let datotexto = JSON.parse(await respuesta.text());
             let datotexto = await respuesta.text();
             document.querySelector('#panelMsgOK').innerHTML = datotexto;
@@ -45,7 +48,10 @@ class Encuentro {
             encuentro.clave = document.querySelector("#login_clave").value;
             let encuentroStringJSON = JSON.stringify(encuentro);
             let respuesta = await fetch("EncuentroServer",
-                    {method: 'POST', body: encuentroStringJSON});
+                    {method: 'POST', body: encuentroStringJSON,
+              /*credentials: 'include'  */
+              credentials: 'same-origin'                   
+            });
             //let datotexto = JSON.parse(await respuesta.text());
             let datotexto = await respuesta.text();
             document.querySelector('#panelMsgOKLogin').innerHTML = datotexto;
@@ -65,7 +71,11 @@ class Encuentro {
             encuentro.nombre = document.querySelector("#login_nombre").value;
             encuentro.clave = document.querySelector("#login_clave").value;
             let encuentroStringJSON = JSON.stringify(encuentro);
-            let respuesta = await fetch( urlDondeIr, {method: 'GET'});            
+            let respuesta = await fetch( urlDondeIr, 
+            {method: 'GET',
+             /*credentials: 'include'  */
+              credentials: 'same-origin' 
+            });            
             let datotexto = await respuesta.text();
             document.querySelector('#panelMsgOKAcceso').innerHTML = datotexto;
         };
