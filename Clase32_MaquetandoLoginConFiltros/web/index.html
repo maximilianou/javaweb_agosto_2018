@@ -6,29 +6,32 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="estilo.css" rel="stylesheet" />
         <script defer src="cliente.js" ></script>
-     </head>
+    </head>
     <body>
+
         <div class="panelPrincipal"
-            ><h2>Registrarse o Sign Up</h2>
+             ><h2>Registrarse o Sign Up</h2>
             <label for="reg_nombre">Nombre:</label><input type="text"     id="reg_nombre"/><hr/>
             <label for="reg_clave" >Clave:</label><input type="password" id="reg_clave"/><hr/>
             <button onclick="Registro.agregar()">Registrar </button>
+            <div id="panelMsgOK"></div>
         </div>
-        
+
         <div class="panelPrincipal"
-            ><h2>Ingresar o Login</h2>
+             ><h2>Ingresar o Login</h2>
             <label for="reg_nombre">Nombre:</label><input type="text"     id="login_nombre"/><hr/>
             <label for="reg_clave" >Clave:</label><input type="password" id="login_clave"/><hr/>
             <button onclick="Encuentro.ingresar()">Ingresar </button>
+            <div id="panelMsgOKLogin"></div>
         </div>
+
         <div class="panelPrincipal"
-            ><h2>Mostrar Acciones</h2>
+             ><h2>Mostrar Acciones</h2>
             <button onclick="Encuentro.irA('AmbitoPublico');">Esto es Publico!!!</button>
             <button onclick="Encuentro.irA('./privado/AmbitoPrivado');">Esto es Privado!!! Reservado!!! Solo con BitCoins, TrocCoins</button>
+            <div id="panelMsgOKAcceso"></div>
         </div>
-        <div id="panelMsgOK"></div>
-        <div id="panelMsgOKLogin"></div>
-        <div id="panelMsgOKAcceso"></div>
+
         <div id="panelMsgERROR"></div>
     </body>
 </html>
