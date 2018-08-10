@@ -1,5 +1,7 @@
 package presentacion.web;
 
+import com.google.gson.Gson;
+import entidades.Nota;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,6 +10,8 @@ import javax.servlet.http.*;
 @WebServlet(name = "NotaServer", urlPatterns = {"/NotaServer"})
 public class NotaServer extends HttpServlet {
 
+    Gson CONVERTIR = new Gson();
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 // aqui seria para consultar HTTP GET === SQL SELECT
@@ -18,8 +22,21 @@ public class NotaServer extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 // aqui seria para consultar HTTP POST === SQL INSERT
+
+// [] === ArrayList, LinkedList, Vector, 
+// {} === TreeMap, Nota, HashMap, HashTable, Dictionary <k, v>
+// "" === String
+// 24 === int, long, float   23.4
+
+       Nota parametroDelCliente = CONVERTIR.fromJson( request.getReader(), Nota.class ); // asignarle lo que envio por web\
+       
        System.out.println("!!! Servidor: Metodo Post, insertar");
-       response.getWriter().print("\"Servidor: Metodo Post, insertar\"");
+//       response.getWriter().print("\"Servidor: Metodo Post, insertar\"");
+       parametroDelCliente.setDescripcion( 
+               parametroDelCliente.getDescripcion() 
+               + " Servidor: Metodo Post, insertar " 
+               + new java.util.Date() );
+       response.getWriter().print( CONVERTIR.toJson( parametroDelCliente ) );
     }
 
     @Override
