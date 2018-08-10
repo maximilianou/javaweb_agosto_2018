@@ -11,14 +11,12 @@ class Notas {
         valorRespuesta = valorPedido;
         //1.1 le envio un dato de parametro al Servidor    
         const traer = async () => {
-            let persona = {};
-            persona.titulo = document.querySelector("#nota_titulo").value;
+            let persona = Notas.obtenerDatosDelFormularioCliente(); // obtengo OK, O tendria que lanzar Exception
             let personaStringJSON = JSON.stringify(persona);
             let respuesta = await fetch("NotaServer",
                     {method: 'POST', body: personaStringJSON});
-            let datotexto = JSON.parse(await respuesta.text());
-            // limpio los campos visualtes
-            document.querySelector("#nota_titulo").value = "";
+            //let datotexto = JSON.parse(await respuesta.text());
+            let datotexto = await respuesta.text();
             // mostrar la respuesta del servidor
             document.querySelector('#panelResultados').innerHTML = datotexto;
         };
@@ -47,14 +45,11 @@ class Notas {
         valorRespuesta = valorPedido;
         //1.1 le envio un dato de parametro al Servidor    
         const traer = async () => {
-            let persona = {};
-            persona.titulo = document.querySelector("#nota_titulo").value;
+            let persona = Notas.obtenerDatosDelFormularioCliente(); // obtengo OK, O tendria que lanzar Exception
             let personaStringJSON = JSON.stringify(persona);
             let respuesta = await fetch("NotaServer",
                     {method: 'PUT', body: personaStringJSON});
             let datotexto = JSON.parse(await respuesta.text());
-            // limpio los campos visualtes
-            document.querySelector("#nota_titulo").value = "";
             // mostrar la respuesta del servidor
             document.querySelector('#panelResultados').innerHTML = datotexto;
         };
@@ -77,14 +72,11 @@ class Notas {
         valorRespuesta = valorPedido;
         //1.1 le envio un dato de parametro al Servidor    
         const traer = async () => {
-            let persona = {};
-            persona.titulo = document.querySelector("#nota_titulo").value;
+            let persona = Notas.obtenerDatosDelFormularioCliente(); // obtengo OK, O tendria que lanzar Exception
             let personaStringJSON = JSON.stringify(persona);
             let respuesta = await fetch("NotaServer?&parametro=" + personaStringJSON,
                     {method: 'DELETE'});
             let datotexto = JSON.parse(await respuesta.text());
-            // limpio los campos visualtes
-            document.querySelector("#nota_titulo").value = "";
             // mostrar la respuesta del servidor            
             document.querySelector('#panelResultados').innerHTML = datotexto;
         };
@@ -107,14 +99,11 @@ class Notas {
         valorRespuesta = valorPedido;
         //1.1 le envio un dato de parametro al Servidor    
         const traer = async () => {
-            let persona = {};
-            persona.titulo = document.querySelector("#nota_titulo").value;
+            let persona = Notas.obtenerDatosDelFormularioCliente(); // obtengo OK, O tendria que lanzar Exception
             let personaStringJSON = JSON.stringify(persona);
             let respuesta = await fetch("NotaServer?&parametro=" + personaStringJSON,
                     {method: 'GET'});
             let datotexto = JSON.parse(await respuesta.text());
-            // limpio los campos visualtes
-            document.querySelector("#nota_titulo").value = "";
             // mostrar la respuesta del servidor
             document.querySelector('#panelResultados').innerHTML = datotexto;
         };
@@ -128,6 +117,18 @@ class Notas {
         console.log("[OK] Consultar(), Programando el Cliente Javascript");
     }
 
+    static obtenerDatosDelFormularioCliente() {
+        let persona = {};
+        persona.titulo = document.querySelector("#nota_titulo").value;
+        persona.descripcion = document.querySelector("#nota_descripcion").value;
+        // 1. mas adelante agregare mas campos y mejorare este metodo.
+        // 2. tambien verificare fechas validas, campos vacios, campos obligatorios
+        //   2.1. error en campos lanzo exepcion.
+        // 3. limpio los campos visualtes
+        document.querySelector("#nota_titulo").value = "";
+        document.querySelector("#nota_descripcion").value = "";
+        return persona;
+    }
 }
 
 
