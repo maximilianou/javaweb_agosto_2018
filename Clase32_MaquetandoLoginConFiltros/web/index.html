@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="estilo.css" rel="stylesheet" />
         <script defer src="cliente.js" ></script>
+        <script defer src="fueradelinea.js" ></script>
     </head>
     <body>
 
@@ -32,6 +33,25 @@
             <div id="panelMsgOKAcceso"></div>
         </div>
 
+        <div class="panelPrincipal"
+             ><h2>Mostrar Temporal</h2>
+            <label for="tmp_nombre">Nombre:</label><input type="text"     id="tmp_nombre"/><hr/>
+            <label for="tmp_clave" >Clave:</label><input type="password" id="tmp_clave"/><hr/>
+            <button onclick="MientrasTanto.agregarTemporal();">Temporal Add!!!</button>
+            <button onclick="MientrasTanto.verTemporal();">Temporal Ver!!!</button>
+            <div id="panelMsgOKTemporal"></div>
+        </div>
+        
+        <div class="panelPrincipal"
+             ><h2>Mostrar Permanente</h2>
+            <label for="prm_nombre">Nombre:</label><input type="text"     id="prm_nombre"/><hr/>
+            <label for="prm_clave" >Clave:</label><input type="password" id="prm_clave"/><hr/>
+            <button onclick="MientrasTanto.agregarPermanente();">Permanente Add!!!</button>
+            <button onclick="MientrasTanto.verPermanente();">Permanente Ver!!!</button>
+            <div id="panelMsgOKPermanente"></div>
+        </div>
+        
+        
         <div id="panelMsgERROR"></div>
     </body>
 </html>
