@@ -28,7 +28,6 @@ public class MesaDulce extends HttpServlet {
         TreeMap<String, String> param
                 = CONVERTIR.fromJson( request.getReader(), TreeMap.class );
 // DEfinimos Utilizar TreeMap Generico
-
         Connection conectar = null;
         try{
             Class.forName("com.mysql.jdbc.Driver");
@@ -45,7 +44,6 @@ public class MesaDulce extends HttpServlet {
             sentencia.setString(3, "100" );
             sentencia.execute();
 response.getWriter().print( CONVERTIR.toJson( "OK!!" ) ); 
-            
         }catch(Exception e){
             e.printStackTrace();
 response.getWriter().print(CONVERTIR.toJson("Error:" + e.getMessage())); 
