@@ -1,13 +1,10 @@
 package presentacion.web;
 
-import com.google.gson.Gson;
 import entidad.Registro;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 import persistencia.EntidadRegistral;
 import util.Uso;
 
@@ -22,6 +19,7 @@ public class EncuentroServer extends HttpServlet {
             resp.getWriter().print( Uso.CONVERTIR.toJson("OK " + req.getSession().getAttribute("Usuario")) );
         }else{
             req.getSession().removeAttribute("Usuario");
+//req.getSession().invalidate();
             System.out.println("... EncuentroServer logOUT ..." + req.getSession().getAttribute("Usuario") );
             resp.getWriter().print( Uso.CONVERTIR.toJson("Olvidate, equivocaste usuario o clave!!!" + (new java.util.Date())) );
         }

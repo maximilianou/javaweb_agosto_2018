@@ -1,6 +1,7 @@
 package entidad;
 
 public class Registro {
+    
     private String nombre;
     private String clave;
 

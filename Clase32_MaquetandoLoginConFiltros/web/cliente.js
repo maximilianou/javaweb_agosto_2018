@@ -1,13 +1,6 @@
 class Registro {
-    
     static agregar(){
         console.log("[..] Registro agregar()");
-        
-        // tomar usuario y password del panel de registro
-        // mandarselo al server, envio al servidor
-        // recibir del server el OK, avisar
-        // recibir del server el ERROR, avisar
-
         const traer = async() => {
             let registro = {};
             registro.nombre = document.querySelector("#reg_nombre").value;
@@ -26,8 +19,6 @@ class Registro {
                 .catch(ex => {
                     document.querySelector("#panelMsgERROR").innerHTML = 'ERROR: ' + ex.message;
                 });
-        
-        
         console.log("[OK] Registro agregar()");
     }
 }
@@ -36,12 +27,6 @@ class Encuentro {
     
     static ingresar(){
         console.log("[..] Encuentro ingresar()");
-        
-        // tomar iusuar oy pass del panel de lgin
-        // enviarlos al que ingrese en session el usuairo
-        // luego avisar que el flaco/a esta logueada/o/s
-        
-
                 const traer = async() => {
             let encuentro = {};
             encuentro.nombre = document.querySelector("#login_nombre").value;
@@ -66,7 +51,7 @@ class Encuentro {
     }
     static irA( urlDondeIr ){
 
-                const traer = async() => {
+            const traer = async() => {
             let encuentro = {};
             encuentro.nombre = document.querySelector("#login_nombre").value;
             encuentro.clave = document.querySelector("#login_clave").value;
@@ -83,9 +68,6 @@ class Encuentro {
                 .catch(ex => {
                     document.querySelector("#panelMsgERROR").innerHTML = 'ERROR: ' + ex.message;
                 });
-        
-        
     }
-    
 }
 
