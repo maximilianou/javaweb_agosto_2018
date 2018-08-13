@@ -2,6 +2,9 @@ package presentacion.web;
 
 import com.google.gson.Gson;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.TreeMap;
 import javax.servlet.ServletException;
@@ -22,15 +25,32 @@ public class MesaDulce extends HttpServlet {
         // HTTP POST === SQL INSERT
         ArrayList listado = new ArrayList();
         // Obtengo el Parametro del Usuario y lo Agrego a la REspuesta
-        TreeMap<String, String> elObjetoParametroDelUsuarioClienteWeb
+        TreeMap<String, String> param
                 = CONVERTIR.fromJson( request.getReader(), TreeMap.class );
+// DEfinimos Utilizar TreeMap Generico
 
-        listado.add( elObjetoParametroDelUsuarioClienteWeb );
-       
-        listado.add("Uno");   // va a venir de la base de datos
-        listado.add("Cinco"); // va a venir de la base de datos, despues..
-        
-        response.getWriter().print( CONVERTIR.toJson( listado ) ); 
+        Connection conectar = null;
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            conectar = DriverManager.getConnection(
+                    "jdbc:mysql://localhost/reposteria_db", 
+                    "educacion", "educacion");
+            PreparedStatement sentencia = 
+                    conectar.prepareStatement(
+                    "INSERT INTO articulos "
+                    + "(art_titulo, art_descripcion, art_precio)VALUES"
+                    + "(?,?,?)");
+            sentencia.setString(1, param.get("titulo") );
+            sentencia.setString(2, param.get("descripcion") );
+            sentencia.setString(3, "100" );
+            sentencia.execute();
+response.getWriter().print( CONVERTIR.toJson( "OK!!" ) ); 
+            
+        }catch(Exception e){
+            e.printStackTrace();
+response.getWriter().print(CONVERTIR.toJson("Error:" + e.getMessage())); 
+              
+        }
     }
 
     @Override
