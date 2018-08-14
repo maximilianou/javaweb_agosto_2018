@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+    <title>Hello!</title>
+
+    <!-- link href="https://fonts.googleapis.com/css?family=Sniglet|Snippet" rel="stylesheet" -->    
+<meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <link rel="stylesheet" href="estilo.css">
+    
+    <script src="cliente.js" defer ></script>
+    
+  </head>  
+  <body>
+    
+    
+    
+    <header> El Encabezado
+    </header>
+    
+    <div id="panelUno" 
+         class="promo panelcentral publicidad" 
+         >
+      <nav>
+        <ul>
+          <li>Deportes</li>
+          <li>Comidas</li>
+          <li>Teatros</li>
+        </ul>
+      </nav>
+    
+      <section>
+      
+        <h1>Maquetando con Grid</h1>
+      
+        <article><h3>Chinchulines</h3>
+        Articulo Uno
+        </article>
+      
+        <article><h3>Mollejas</h3>
+        Articulo Dos
+        </article>
+      
+        <article><h3>Costillas</h3>
+        Articulo Tres
+        </article>
+
+        <div id="panelMsg"
+             contenteditable="true"
+             >
+          <div>Mensajes:</div>
+          <div id="panelMsgContenido"></div>
+          <div id="panelMensajes"></div>
+          <div id="panelResultados"></div>
+        </div>
+    
+      </section>
+
+      <aside>
+        Formulario
+        
+        <input type="text" id="nota_titulo"
+               placeholder="ingrese titulo aqui"
+               />
+        <textarea id="nota_descripcion" cols="20" rows="5" ></textarea>
+        <input type="number" id="nota_precio"
+               />
+
+        <button  
+                id="uno" 
+                class=""
+                onclick="Notas.subir();" 
+                > 
+          Presione!! 
+        </button>
+        <button onclick="Notas.limpiar();" >
+          Limpiar
+        </button>
+        <button onclick="Notas.actualizar();" >
+          Actualizar ! ! 
+        </button>
+        <button onclick="Notas.borrar();" >
+          Borrar ! ! 
+        </button>
+        <button onclick="Notas.consultar();" >
+          Consultar ! ! 
+        </button>
+        
+      </aside>
+      
+    </div>
+    
+    <footer>El Pie de Pagina
+    </footer>
+    
+      
+  </body>
+  
+</html>
