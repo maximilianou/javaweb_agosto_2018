@@ -105,18 +105,18 @@ class Reposteria {
             producto.descripcion = document.querySelector('#producto_descripcion').value;
 
             let productoStringJSON = JSON.stringify(producto);
-            alert("ENVIA EL CLIENTE: " + productoStringJSON);
+ //           alert("ENVIA EL CLIENTE: " + productoStringJSON);
             let respuesta = await fetch("MesaDulce?&" + productoStringJSON,
                     {method: 'GET'});
             let datotexto = JSON.parse(await respuesta.text());
-            alert("ENVIA EL SERVER: " + datotexto);
-
-        // OUTPUT, mostrarlas visualmante DATO LOCAL
-        document.querySelector('#panelMensaje').innerHTML
-                += producto.titulo + ", " + producto.descripcion;
-
+//            alert("ENVIA EL SERVER: " + datotexto);
+// Tengo en datotexto el objeto javascript de la lista de articulos
+// Quiero tener la plantilla donde se agregan los datos de la lista de articulos
+// Cruzar los datos por la plantilla y que me devuelva el HTML resultante para dibujar en el panel Resultados
+// 
+            let plantillaArticulos = document.querySelector('#plantillaListado').innerHTML;
         // OUTPUT, mostrarlas visualmante DATO del SERVIDOR
-            document.querySelector('#panelResultados').innerHTML = datotexto;
+            document.querySelector('#panelResultados').innerHTML = eval( plantillaArticulos );
         };
         traer()
                 .catch(ex => {
