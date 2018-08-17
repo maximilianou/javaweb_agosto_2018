@@ -84,19 +84,24 @@
     
     <footer> 
       Pie de Pagina
-      
-<svg height="150" width="500">
-  <defs>
-    <radialgradient id="grad1" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
-      <stop offset="0%" style="stop-color:rgb(255,255,255);
-      stop-opacity:0" />
-      <stop offset="100%" style="stop-color:rgb(120,150,120);stop-opacity:1" />
-    </radialgradient>
-  </defs>
-  <ellipse cx="200" cy="70" rx="85" ry="55" fill="url(#grad1)" />
-</svg>
-      
     </footer>
 
+      <script type="text/template" id="plantillaGolosina">
+          `
+          ${ datotexto.map( 
+            goloActual => 
+            `
+            <li>
+             ${ goloActual.id },
+             ${ goloActual.titulo },
+             ${ goloActual.precio },
+             ${ goloActual.descripcion }.
+            </li>
+            `
+            ).join('') 
+          }
+          `
+      </script>
+      
   </body>
 </html>
