@@ -100,7 +100,8 @@ class Distribuidora {
             let respuesta = await fetch("GolosinaServer?&parametro=" + golosinaStringJSON,
                     {method: 'GET'});
             let datotexto = JSON.parse(await respuesta.text());
-            document.querySelector('#panelResultados').innerHTML = datotexto;
+            let plantilla = document.querySelector('#plantillaGolosina').innerHTML;
+            document.querySelector('#panelResultados').innerHTML = eval( plantilla );
         };
         traer()
                 .catch(ex => {

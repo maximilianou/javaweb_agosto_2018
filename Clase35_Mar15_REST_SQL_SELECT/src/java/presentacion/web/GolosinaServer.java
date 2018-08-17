@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import entidades.Golosina;
 import java.io.IOException;
 import java.sql.*;
+import java.util.*;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,8 +20,36 @@ public class GolosinaServer extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // HTTP GET === SQL SELECT
         //request.getParameter(name);
-        System.out.println("!!! GoloServer GET consultar ");
-        response.getWriter().print("\"GoloServer GET consultar\"");
+        
+        Connection conectar = null; // 1. Conectarme a la base de datos  
+        try{ // intento Insertar en la Base
+            Class.forName("com.mysql.jdbc.Driver");
+            conectar = DriverManager.getConnection(
+                    "jdbc:mysql://localhost/distribuidora_db",
+                    "educacion","educacion");
+            PreparedStatement sentencia = conectar.prepareStatement(
+                  " SELECT * FROM golosinas ");
+            ResultSet resultadoSQL = sentencia.executeQuery();
+            ArrayList<TreeMap> listado = new ArrayList();
+            
+            while( resultadoSQL.next() ){
+                TreeMap<String, String> golosinaActual = new TreeMap();
+                golosinaActual.put("id", resultadoSQL.getString("gol_id"));
+                golosinaActual.put("titulo", resultadoSQL.getString("gol_titulo"));
+                golosinaActual.put("descripcion", resultadoSQL.getString("gol_descripcion"));
+                golosinaActual.put("precio", resultadoSQL.getString("gol_precio"));
+                listado.add( golosinaActual );
+            }
+            // Mensaje de OK
+            response.getWriter().print( CONVERTIR.toJson( listado )  );
+        }catch(Exception e){ // Si No puedo Insertar en la base Error
+            e.printStackTrace();
+            // Mensaje de Error
+            response.getWriter().print(CONVERTIR.toJson("Error: " + e.getMessage()));
+        }
+ 
+        
+        
     }
 
     @Override
