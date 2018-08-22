@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+  <head>
+    
+    <title>Maquetando</title>
+    
+    <link rel="stylesheet" href="estilo.css">
+
+    <script src="cliente.js" defer></script>
+
+  </head>  
+  
+  <body>
+    <header>Encabezado</header>
+    
+    <nav>
+      <ul>
+        <li>Maqueta Uno</li>
+        <li>Maqueta Dos</li>
+        <li>Maqueta Tres</li>
+      </ul>
+    </nav>
+    
+      <section>
+        
+        <h3>Tortas</h3>
+        
+        <article> Selva Negra
+        </article>
+        
+        <article>Lemon Pie
+        </article>
+        
+        <div  id='panelMensaje'>
+          Mensaje:
+        </div>
+        
+        <div  id='panelResultados'>
+          Resultado:
+        </div>
+
+        <div  id='panelMensajes'>
+          MensajeS:
+        </div>
+        
+      </section>
+
+    <aside>
+      Formulario:
+      
+      <input type='text' id='producto_titulo' />
+      
+      <textarea 
+                rows='10' cols='20'
+                id='producto_descripcion' 
+                ></textarea>
+      
+      <button    
+              onclick='Reposteria.publicar();' 
+              id="btnPublicar" 
+              class=""  
+              >
+        Presione Aqui!!!
+      </button>
+            <button    
+              onclick='Reposteria.actualizar();' 
+              id="btnActualizar" 
+              class=""  
+              >
+        Actualizar Aqui!!!
+      </button>
+            <button    
+              onclick='Reposteria.borrar();' 
+              id="btnBorrar" 
+              class=""  
+              >
+        Borrar Aqui!!!
+      </button>
+            <button    
+              onclick='Reposteria.consultar();' 
+              id="btnConsultar" 
+              class=""  
+              >
+        Consultar Aqui!!!
+      </button>
+
+    </aside>
+    
+    <footer>Pie de Paginga
+      
+     
+    </footer>
+
+    <script type="text/template" id="plantillaListado">
+        `
+         <ul>
+          ${ datotexto.map( cadauno =>
+                  `
+                  <li> ${cadauno.id}  
+                       ${cadauno.titulo} 
+                       ${cadauno.descripcion}
+                       ${cadauno.precio}
+                  </li>
+                  `
+            ).join('')
+          }
+         </ul>
+        `
+    </script>
+    
+  </body>
+  
+</html>
