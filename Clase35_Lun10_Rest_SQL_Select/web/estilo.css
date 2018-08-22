@@ -5,8 +5,11 @@
 }
 body {
   background-color: orange;
+  color: yellow;
+  text-shadow: 2px 2px #ff0000;
+  font-size: large;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   grid-gap: 10px;
   grid-auto-rows: minmax(30px, auto);    
 }
@@ -19,6 +22,8 @@ nav{
 }
 section{
   background-color: red;
+  grid-column: 2 / -2;
+  
 }
 article{
   background-color: darkgray;

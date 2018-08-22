@@ -35,7 +35,6 @@ class Reposteria {
         console.log('[OK] Buenos Aires Programando Online!!');
     }
     
-    
     static actualizar(){
         console.log('[..] Buenos Aires Programando Online!! ACTUALZIAR');
         
