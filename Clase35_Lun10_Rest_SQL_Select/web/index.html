@@ -94,10 +94,15 @@
 
     <script type="text/template" id="plantillaListado">
         `
-         <ul>
+         <ol>
           ${ datotexto.map( cadauno =>
                   `
-                  <li> ${cadauno.id}  
+                  <li  > 
+                       <button onclick='alert(${cadauno.id})' >
+                          Borrar  ${cadauno.id}  
+                       </button>
+    
+                       ${cadauno.id}  
                        ${cadauno.titulo} 
                        ${cadauno.descripcion}
                        ${cadauno.precio}
@@ -105,7 +110,7 @@
                   `
             ).join('')
           }
-         </ul>
+         </ol>
         `
     </script>
     
