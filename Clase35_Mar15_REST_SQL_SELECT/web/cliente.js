@@ -62,7 +62,7 @@ class Distribuidora {
         document.querySelector("#panelMsg").innerHTML = valorRespuesta;
         console.log('[OK] ACTUALIxando en Buenos Aires');
     }
-    static borrar() {
+    static borrar( paramID ) {
         console.log('[..] Borrando en Buenos Aires');
         let valorRespuesta = "";
         let valorPedido = "";
@@ -72,9 +72,13 @@ class Distribuidora {
         valorRespuesta = " -- " + valorPedido + " -- ";
         const traer = async () => {
             let golosina = Distribuidora.obtenerParametrosDelFormularioCliente();
+            golosina.id = paramID;
+            if( golosina.precio == "" ){
+                golosina.precio = 0;
+            };
             let golosinaStringJSON = JSON.stringify(golosina);
-            let respuesta = await fetch("GolosinaServer",
-                    {method: 'DELETE', body: golosinaStringJSON});
+            let respuesta = await fetch("GolosinaServer?&parametro="+golosinaStringJSON,
+                    {method: 'DELETE'});
             let datotexto = JSON.parse(await respuesta.text());
             document.querySelector('#panelResultados').innerHTML = datotexto;
         };
@@ -102,6 +106,10 @@ class Distribuidora {
             let datotexto = JSON.parse(await respuesta.text());
             let plantilla = document.querySelector('#plantillaGolosina').innerHTML;
             document.querySelector('#panelResultados').innerHTML = eval( plantilla );
+            ///// Obtengo la Nueva Plantilla para Tabla y la ejecuto -----
+            let tablita = document.querySelector('#plantillaGolosinaTabla').innerHTML;
+            document.querySelector('#panelResultados').innerHTML += eval( tablita );
+            
         };
         traer()
                 .catch(ex => {

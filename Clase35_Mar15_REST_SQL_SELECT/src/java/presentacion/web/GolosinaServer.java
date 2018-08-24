@@ -3,6 +3,7 @@ package presentacion.web;
 import com.google.gson.Gson;
 import entidades.Golosina;
 import java.io.IOException;
+import java.net.URLDecoder;
 import java.sql.*;
 import java.util.*;
 import javax.servlet.ServletException;
@@ -100,8 +101,30 @@ public class GolosinaServer extends HttpServlet {
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // HTTP DELETE === SQL DELETE
-        System.out.println("!!! GoloServer DELETE === Borrar ");
-        resp.getWriter().print("\"GoloServer DELETE === Borrar \"");
+        
+        
+        Golosina param = CONVERTIR.fromJson(
+                                 req.getParameter("parametro"), 
+                              Golosina.class);
+        Connection conectar = null; // 1. Conectarme a la base de datos  
+        try{ 
+            Class.forName("com.mysql.jdbc.Driver");
+            conectar = DriverManager.getConnection(
+                    "jdbc:mysql://localhost/distribuidora_db",
+                    "educacion","educacion");
+            PreparedStatement sentencia = conectar.prepareStatement(
+                    " DELETE FROM golosinas "
+                  + " WHERE  gol_id = ? ");
+            sentencia.setString(1, param.getId());
+            sentencia.execute();
+            // Mensaje de OK
+            resp.getWriter().print( CONVERTIR.toJson( "OK" )  );
+        }catch(Exception e){ // Si No puedo Insertar en la base Error
+            e.printStackTrace();
+            // Mensaje de Error
+            resp.getWriter().print(CONVERTIR.toJson("Error: " + e.getMessage()));
+        }
 
+        
     }
 }

@@ -1,7 +1,7 @@
 package entidades;
 
 public class Golosina {
-
+    private String id;
     private String titulo;
     private String descripcion;
     private double precio;
@@ -28,5 +28,19 @@ public class Golosina {
 
     public void setPrecio(double precio) {
         this.precio = precio;
+    }
+
+    /**
+     * @return the id
+     */
+    public String getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
     }
 }
