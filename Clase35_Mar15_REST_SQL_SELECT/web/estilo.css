@@ -43,10 +43,9 @@ footer{
   
 }
 
-section > h2 {
+section > h2, section > div {
   background-color: darkgrey;
   grid-column: 1 / -1;
-   
 }
 header, footer, h2, h3 {
   text-align: center;
@@ -80,5 +79,7 @@ aside{
   
 }
 
-
+td{
+    border: 1px dotted;
+}
 

@@ -44,6 +44,7 @@
         <h3>Chupetin</h3>
         TopoLin Sorpresa
       </article>
+      
       <div id="panelMsg">
         Mensaje:
       </div>
@@ -102,6 +103,29 @@
           }
           `
       </script>
+
+      <script type="text/template" id="plantillaGolosinaTabla">
+          `
+          <table>
+          ${ datotexto.map( 
+                elemActual =>
+                `
+                <tr>
+                        <td><button 
+                            onclick='Distribuidora.borrar(${ elemActual.id })'> 
+                            Borrar ${ elemActual.id } 
+                            </button></td>
+                        <td>${ elemActual.titulo }</td>
+                        <td>${ elemActual.precio }</td>
+                        <td>${ elemActual.descripcion }</td>
+                </tr>
+                `
+            ).join('') 
+           }
+          <table>
+          `
+      </script>
+
       
   </body>
 </html>
