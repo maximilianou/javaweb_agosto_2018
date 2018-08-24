@@ -107,6 +107,10 @@ class Notas {
             let datotexto = JSON.parse(await respuesta.text());
             // mostrar la respuesta del servidor
             document.querySelector('#panelResultados').innerHTML = eval( textoPlantilla );
+            /// Caso de Mostrar en Tabla debajo de la lista!! 20180824 -----
+            let tablaPlantilla = document.querySelector('#plantillaComidasTabla').innerHTML;
+            document.querySelector('#panelResultados').innerHTML += eval( tablaPlantilla );
+            
         };
         traer()
                 .catch(ex => {
