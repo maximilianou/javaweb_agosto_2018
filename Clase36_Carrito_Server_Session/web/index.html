@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            article {
+                background-color: aqua; 
+                display: inline-block;
+                width: 200px;
+                heigth: 200px;
+            }
+        </style>
+    </head>
+    <body>
+        <script type="text/javascript">
+            class Carro {
+                static comprar(elId) {
+                    const traer = async() => {
+                        let producto = {};
+                        producto.id = elId;
+                        let personaStringJSON = JSON.stringify(producto);
+                        let respuesta = await fetch("Compra",
+                                {method: 'PUT', body: personaStringJSON,
+                                 credentials: 'same-origin' 
+                                });
+                        let datotexto = JSON.parse(await respuesta.text());
+                        document.querySelector('#panelR').innerHTML = datotexto;
+                    };
+                    traer()
+                            .catch(ex => {
+                                document.querySelector("#panelM").innerHTML = 'ERROR: ' + ex.message;
+                            });
+                }
+                static sacar(elId) {
+alert("TODO: sacar");
+                }
+                static consultar() {
+                    const traer = async() => {
+                        let respuesta = await fetch("Compra", {method: 'GET',
+                           credentials: 'same-origin'  });
+                        let productos = JSON.parse(await respuesta.text());
+                        document.querySelector('#panelR').innerHTML = JSON.stringify(productos);
+                    };
+                    traer()
+                            .catch(ex => {
+                                document.querySelector("#panelM").innerHTML = 'ERROR: ' + ex.message;
+                            });
+
+                }
+            }
+        </script>
+
+        <h1>Carrito de Compras</h1>
+        <button onclick="Carro.consultar();">Consultar Carrito </button>
+        <article >
+            <h3>Campera</h3>
+            <div>Rompe vientos</div>
+            <div>300</div>
+            <button onclick="Carro.comprar(3)">Comprar</button>
+            <button onclick="Carro.sacar(3)">Sacar</button>
+        </article>
+
+        <article >
+            <h3>Campera</h3>
+            <div>Rompe vientos</div>
+            <div>300</div>
+            <button onclick="Carro.comprar(5)">Comprar</button>
+            <button onclick="Carro.sacar(5)">Sacar</button>
+        </article>
+
+        <article >
+            <h3>Campera</h3>
+            <div>Rompe vientos</div>
+            <div>300</div>
+            <button onclick="Carro.comprar(7)">Comprar</button>
+            <button onclick="Carro.sacar(7)">sacar</button>
+        </article>
+
+        <section id="elCarito">
+        </section>
+        <div id="panelR"></div>
+        <div id="panelM"></div>
+    </body>
+
+</html>
