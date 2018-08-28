@@ -62,7 +62,7 @@ class Notas {
         document.querySelector("#panelMsgContenido").innerHTML = valorRespuesta;
         console.log("[OK] actualizando, Programando el Cliente Javascript");
     }
-    static borrar() {
+    static borrar( paramID ) {
         console.log("[..] BORRAR(), Programando el Cliente Javascript");
         let valorPedido = "";
         let valorRespuesta = "";
@@ -73,6 +73,7 @@ class Notas {
         //1.1 le envio un dato de parametro al Servidor    
         const traer = async () => {
             let persona = Notas.obtenerDatosDelFormularioCliente(); // obtengo OK, O tendria que lanzar Exception
+            persona.id = paramID;
             let personaStringJSON = JSON.stringify(persona);
             let respuesta = await fetch("NotaServer?&parametro=" + personaStringJSON,
                     {method: 'DELETE'});
@@ -127,6 +128,9 @@ class Notas {
         persona.titulo = document.querySelector("#nota_titulo").value;
         persona.descripcion = document.querySelector("#nota_descripcion").value;
         persona.precio = document.querySelector("#nota_precio").value;
+        if( persona.precio == "" ){
+            persona.precio = 0;
+        }
         // 1. mas adelante agregare mas campos y mejorare este metodo.
         // 2. tambien verificare fechas validas, campos vacios, campos obligatorios
         //   2.1. error en campos lanzo exepcion.
