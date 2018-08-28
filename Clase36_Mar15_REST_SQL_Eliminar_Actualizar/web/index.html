@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+  <head>
+    
+    <title>Golosinas!</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="estilo.css" />
+
+    <script src="cliente.js" defer></script>
+    
+  </head>  
+  
+  <body>
+    
+    <header> Kiosco los del Sur
+    </header>
+
+    <nav>
+      <ul>
+        <li>Chupetines</li>
+        <li>Caramelos</li>
+        <li>Chicles</li>
+      </ul>
+    </nav>
+    
+    <section>
+      <h2>Venta de Golosinas</h2>
+      <article>
+        <h3>Alfajor</h3>
+        Alfajores Capitan
+      </article>
+      <article>
+        <h3>Galletita</h3>
+        Rodesia
+      </article>
+      <article>
+        <h3>Chicle</h3>
+        Chicle Jirafa
+      </article>
+      <article>
+        <h3>Chupetin</h3>
+        TopoLin Sorpresa
+      </article>
+      
+      <div id="panelMsg">
+        Mensaje:
+      </div>
+      <div id="panelResultados">
+        Mensaje:
+      </div>
+      <div id="panelMensajes">
+        Mensaje:
+      </div>
+    </section>
+
+    <aside>
+      
+      Formulario:
+      
+      <input type="text" id="golosina_titulo_" />
+      
+      <textarea cols="20" rows="5" 
+                id="golosina_descripcion_"
+                ></textarea>
+      <input type="number" id="golosina_precio_" />
+      
+      <button 
+              onclick="Distribuidora.ofertar();"
+              >Presione!!</button>
+      <button 
+              onclick="Distribuidora.consultar();"
+              >Consultar!!</button>
+      
+      
+    </aside>
+    
+    <footer> 
+      Pie de Pagina
+    </footer>
+
+      <script type="text/template" id="plantillaGolosina">
+          `
+          ${ datotexto.map( 
+            goloActual => 
+            `
+            <li>
+             ${ goloActual.id },
+             ${ goloActual.titulo },
+             ${ goloActual.precio },
+             ${ goloActual.descripcion }.
+            </li>
+            `
+            ).join('') 
+          }
+          `
+      </script>
+
+      <script type="text/template" id="plantillaGolosinaTabla">
+          `
+          <table>
+          ${ datotexto.map( 
+                elemActual =>
+                `
+                <tr>
+                        <td>
+                            <button 
+                            onclick='Distribuidora.borrar(${ elemActual.id })'> 
+                            Borrar ${ elemActual.id } 
+                            </button>
+                        </td>
+                        <td>
+                            <button 
+                            onclick='Distribuidora.actualizar(${ elemActual.id })'> 
+                            Actualizar ${ elemActual.id } 
+                            </button>
+                        </td>
+
+                        <td>
+                          <input type='text' 
+                                 value='${ elemActual.titulo }' 
+                                 id='golosina_titulo_${ elemActual.id }'
+                          />
+                        </td>
+                        <td>
+                          <input type='text' 
+                                 value='${ elemActual.precio }' 
+                                 id='golosina_precio_${ elemActual.id }'
+                          />
+                        </td>
+                        <td>
+                          <input type='text' 
+                                 value='${ elemActual.descripcion }' 
+                                 id='golosina_descripcion_${ elemActual.id }'
+                          />
+                        </td>
+                </tr>
+                `
+            ).join('') 
+           }
+          <table>
+          `
+      </script>
+
+      
+  </body>
+</html>
