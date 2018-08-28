@@ -99,10 +99,42 @@ public class NotaServer extends HttpServlet {
     }
 
     @Override
-    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doDelete(
+            HttpServletRequest req, HttpServletResponse resp) 
+            throws ServletException, IOException {
 // aqui seria para consultar HTTP DELETE === SQL DELETE
-        System.out.println("!!! Servidor: Metodo DELETE, borrar");
-        resp.getWriter().print("\"Servidor: Metodo DELETE, borrar\"");
+
+//        Nota param = CONVERTIR.fromJson(req.getReader(), Nota.class); // asignarle lo que envio por web\
+        Nota param = CONVERTIR.fromJson(
+                req.getParameter("parametro"), 
+                Nota.class); // asignarle lo que envio por web\
+
+        System.out.println("!!! Servidor: Metodo Post, insertar");
+// Procesamiento de datos, insertar en la base de datos con SQL
+
+// 0. Cargar el Driver, en este caso, com.mysql.jdbc.Driver
+// 1. Conectar con la base de datos
+// 2. Preparar Sentencia
+// 3. Ejecutar Sentencia
+        Connection conectar = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            conectar = DriverManager.getConnection(
+                    "jdbc:mysql://localhost/menu_db",
+                    "educacion","educacion");
+            PreparedStatement sentencia = conectar.prepareStatement(
+                    " DELETE FROM comidas WHERE comidas.com_id = ? "  );
+            sentencia.setString(1, param.getId() );
+            sentencia.execute();
+        resp.getWriter().print(
+                CONVERTIR.toJson( "OK"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        resp.getWriter().print(
+                CONVERTIR.toJson( "Error: " + e.getMessage()));
+        }
+
+
     }
 
 }
