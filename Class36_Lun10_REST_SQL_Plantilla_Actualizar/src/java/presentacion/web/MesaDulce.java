@@ -39,7 +39,7 @@ public class MesaDulce extends HttpServlet {
                     conectar.prepareStatement(
                     "INSERT INTO articulos "
                     + "(art_titulo, art_descripcion, art_precio)VALUES"
-                    + "(?,?,?)");
+                    + "( ?, ?, ? )");
             sentencia.setString(1, param.get("titulo") );
             sentencia.setString(2, param.get("descripcion") );
             sentencia.setString(3, "100" );
@@ -53,11 +53,42 @@ response.getWriter().print(CONVERTIR.toJson("Error:" + e.getMessage()));
     }
 
     @Override
-    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) 
+            throws ServletException, IOException {
         // TODO: Aqui programare lo que es Actualizar algo Que Existia de Datos, 
         // HTTP PUT === SQL UPDATE
-        resp.getWriter().print("98765"); // int double float
+        ///////////////////////////////////
+        // UPDATE articulos 
+        //   SET art_titulo = ?, 
+        //       art_descripcion = ? 
+        //   WHERE articulos.art_id = ?;
+        ///////////////////////////////////
 
+        ArrayList listado = new ArrayList();
+        // Obtengo el Parametro del Usuario y lo Agrego a la REspuesta
+        TreeMap<String, String> param
+                = CONVERTIR.fromJson( req.getReader(), TreeMap.class );
+// DEfinimos Utilizar TreeMap Generico
+        Connection conectar = null;
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            conectar = DriverManager.getConnection(
+                    "jdbc:mysql://localhost/reposteria_db", 
+                    "educacion", "educacion");
+            PreparedStatement sentencia = 
+                    conectar.prepareStatement(
+" UPDATE articulos SET art_titulo = ?, art_descripcion = ? WHERE articulos.art_id = ?; ");
+            sentencia.setString(1, param.get("titulo") );
+            sentencia.setString(2, param.get("descripcion") );
+            sentencia.setString(3, String.valueOf( param.get("id") ) );
+            sentencia.execute();
+resp.getWriter().print( CONVERTIR.toJson( "OK!!" ) ); 
+        }catch(Exception e){
+            e.printStackTrace();
+resp.getWriter().print(CONVERTIR.toJson("Error:" + e.getMessage())); 
+              
+        }
+        
     }
 
     @Override

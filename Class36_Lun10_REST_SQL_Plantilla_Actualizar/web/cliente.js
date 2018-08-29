@@ -35,14 +35,15 @@ class Reposteria {
         console.log('[OK] Buenos Aires Programando Online!!');
     }
     
-    static actualizar(){
+    static actualizar( paramID ){
         console.log('[..] Buenos Aires Programando Online!! ACTUALZIAR');
         
         const traer = async() => {
             let producto = {}; // defino un Ojbeto para tomar lso parametros
-            producto.titulo = document.querySelector('#producto_titulo').value;
-            producto.descripcion = document.querySelector('#producto_descripcion').value;
-
+            producto.titulo = document.querySelector('#producto_titulo'+paramID).value;
+            producto.descripcion = document.querySelector('#producto_descripcion'+paramID).value;
+            producto.id = paramID;
+            
             let productoStringJSON = JSON.stringify(producto);
             alert("ENVIA EL CLIENTE: " + productoStringJSON);
             let respuesta = await fetch("MesaDulce",
@@ -129,7 +130,7 @@ class Reposteria {
 }
 
 
-
+Reposteria.consultar(); // Inicializacion de la lista de datos, by Tomas
 
 
 
