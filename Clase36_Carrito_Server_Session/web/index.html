@@ -21,10 +21,12 @@ and open the template in the editor.
     <body>
         <script type="text/javascript">
             class Carro {
-                static comprar(elId) {
+                static comprar(elId, cantidad) {
                     const traer = async() => {
                         let producto = {};
-                        producto.id = elId;
+                        producto.producto = {};
+                        producto.producto.id = elId;
+                        producto.cantidad = cantidad;
                         let personaStringJSON = JSON.stringify(producto);
                         let respuesta = await fetch("Compra",
                                 {method: 'PUT', body: personaStringJSON,
@@ -38,21 +40,65 @@ and open the template in the editor.
                                 document.querySelector("#panelM").innerHTML = 'ERROR: ' + ex.message;
                             });
                 }
-                static sacar(elId) {
-alert("TODO: sacar");
+                static sacar(elId, cantidad) {
+                    const traer = async() => {
+                        let producto = {};
+                        producto.producto = {};
+                        producto.producto.id = elId;
+                        producto.cantidad = cantidad;
+                        let personaStringJSON = JSON.stringify(producto);
+                        let respuesta = await fetch("Compra?&parametro="+personaStringJSON,
+                                {method: 'DELETE', credentials: 'same-origin'  });
+                        let datotexto = JSON.parse(await respuesta.text());
+                        document.querySelector('#panelR').innerHTML = datotexto;
+                    };
+                    traer()
+                            .catch(ex => {
+                                document.querySelector("#panelM").innerHTML = 'ERROR: ' + ex.message;
+                            });
                 }
                 static consultar() {
                     const traer = async() => {
-                        let respuesta = await fetch("Compra", {method: 'GET',
+                        let respuesta = await fetch("Compra?&", {method: 'GET',
                            credentials: 'same-origin'  });
                         let productos = JSON.parse(await respuesta.text());
-                        document.querySelector('#panelR').innerHTML = JSON.stringify(productos);
+                        let plantilla = `
+<ul>
+                ${ productos.map( prodActual =>
+                        `
+                        <li>
+                            ${prodActual.producto.id}, 
+                            ${prodActual.cantidad}
+                            <button onclick="Carro.sacar(${prodActual.producto.id}, ${prodActual.cantidad})">Sacar</button>
+                        </li>
+                        `
+                        ).join('')}
+                <li><button onclick="Carro.finalizar();">Pagar</button></li>
+</ul>
+                
+                        `;
+                        document.querySelector('#panelR').innerHTML = plantilla;
                     };
                     traer()
                             .catch(ex => {
                                 document.querySelector("#panelM").innerHTML = 'ERROR: ' + ex.message;
                             });
 
+                }
+                static finalizar(){
+                    const traer = async() => {
+                        let respuesta = await fetch("Compra",
+                                {method: 'PUT', body: personaStringJSON,
+                                 credentials: 'same-origin' 
+                                });
+                        let datotexto = JSON.parse(await respuesta.text());
+                        document.querySelector('#panelR').innerHTML = datotexto;
+                    };
+                    traer()
+                            .catch(ex => {
+                                document.querySelector("#panelM").innerHTML = 'ERROR: ' + ex.message;
+                            });
+                    
                 }
             }
         </script>
@@ -63,24 +109,24 @@ alert("TODO: sacar");
             <h3>Campera</h3>
             <div>Rompe vientos</div>
             <div>300</div>
-            <button onclick="Carro.comprar(3)">Comprar</button>
-            <button onclick="Carro.sacar(3)">Sacar</button>
+            <button onclick="Carro.comprar(3, 1)">Comprar</button>
+            <button onclick="Carro.sacar(3, 1)">Sacar</button>
         </article>
 
         <article >
             <h3>Campera</h3>
             <div>Rompe vientos</div>
             <div>300</div>
-            <button onclick="Carro.comprar(5)">Comprar</button>
-            <button onclick="Carro.sacar(5)">Sacar</button>
+            <button onclick="Carro.comprar(5, 1)">Comprar</button>
+            <button onclick="Carro.sacar(5, 1)">Sacar</button>
         </article>
 
         <article >
             <h3>Campera</h3>
             <div>Rompe vientos</div>
             <div>300</div>
-            <button onclick="Carro.comprar(7)">Comprar</button>
-            <button onclick="Carro.sacar(7)">sacar</button>
+            <button onclick="Carro.comprar(7, 1)">Comprar</button>
+            <button onclick="Carro.sacar(7, 1)">sacar</button>
         </article>
 
         <section id="elCarito">
