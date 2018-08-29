@@ -5,7 +5,7 @@
     
     <title>Maquetando</title>
     
-    <link rel="stylesheet" href="estilo.css">
+    <link rel="stylesheet" href="estilo.css" />
 
     <script src="cliente.js" defer></script>
 
@@ -64,20 +64,6 @@
         Presione Aqui!!!
       </button>
             <button    
-              onclick='Reposteria.actualizar();' 
-              id="btnActualizar" 
-              class=""  
-              >
-        Actualizar Aqui!!!
-      </button>
-            <button    
-              onclick='Reposteria.borrar();' 
-              id="btnBorrar" 
-              class=""  
-              >
-        Borrar Aqui!!!
-      </button>
-            <button    
               onclick='Reposteria.consultar();' 
               id="btnConsultar" 
               class=""  
@@ -98,13 +84,24 @@
           ${ datotexto.map( cadauno =>
                   `
                   <li  > 
-                       <button onclick='Reposteria.borrar(${cadauno.id})' >
+                       <button 
+                          onclick='Reposteria.borrar(${cadauno.id})' >
                           Borrar  ${cadauno.id}  
+                       </button>
+                       <button 
+                          onclick='Reposteria.actualizar(${cadauno.id})' >
+                          Actualizar  ${cadauno.id}  
                        </button>
     
                        ${cadauno.id}  
-                       ${cadauno.titulo} 
-                       ${cadauno.descripcion}
+                       <input type='text'
+                              value='${cadauno.titulo}'
+                              id='producto_titulo${cadauno.id}'
+                       />
+                       <input type='text'
+                              value='${cadauno.descripcion}'
+                              id='producto_descripcion${cadauno.id}'
+                       />
                        ${cadauno.precio}
                   </li>
                   `
