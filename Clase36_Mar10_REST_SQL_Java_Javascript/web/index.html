@@ -59,11 +59,11 @@
       <aside>
         Formulario
         
-        <input type="text" id="nota_titulo"
+        <input type="text" id="nota_titulo_"
                placeholder="ingrese titulo aqui"
                />
-        <textarea id="nota_descripcion" cols="20" rows="5" ></textarea>
-        <input type="number" id="nota_precio"
+        <textarea id="nota_descripcion_" cols="20" rows="5" ></textarea>
+        <input type="number" id="nota_precio_"
                />
 
         <button  
@@ -75,12 +75,6 @@
         </button>
         <button onclick="Notas.limpiar();" >
           Limpiar
-        </button>
-        <button onclick="Notas.actualizar();" >
-          Actualizar ! ! 
-        </button>
-        <button onclick="Notas.borrar();" >
-          Borrar ! ! 
         </button>
         <button onclick="Notas.consultar();" >
           Consultar ! ! 
@@ -133,8 +127,16 @@
                       value='${ bicicleta.titulo }' 
                       id='nota_titulo_${ bicicleta.id }' />
                   </td>
-                  <td>${ bicicleta.descripcion }</td>
-                  <td>${ bicicleta.precio }</td>
+                  <td>
+                      <input type='text' 
+                      value='${ bicicleta.descripcion }' 
+                      id='nota_descripcion_${ bicicleta.id }' />
+                  </td>
+                  <td>
+                      <input type='text' 
+                      value='${ bicicleta.precio }' 
+                      id='nota_precio_${ bicicleta.id }' />
+                  </td>
                   </tr>                  
                   
                   `

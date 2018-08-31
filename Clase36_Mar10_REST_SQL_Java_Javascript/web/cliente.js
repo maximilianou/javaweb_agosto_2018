@@ -6,12 +6,12 @@ class Notas {
         let valorPedido = "";
         let valorRespuesta = "";
 // INPUT
-        valorPedido = document.querySelector("#nota_titulo").value;
+//        valorPedido = document.querySelector("#nota_titulo").value;
 //1. Procesamiento
         valorRespuesta = valorPedido;
         //1.1 le envio un dato de parametro al Servidor    
         const traer = async () => {
-            let persona = Notas.obtenerDatosDelFormularioCliente(); // obtengo OK, O tendria que lanzar Exception
+            let persona = Notas.obtenerDatosDelFormularioCliente(""); // obtengo OK, O tendria que lanzar Exception
             let personaStringJSON = JSON.stringify(persona);
             let respuesta = await fetch("NotaServer",
                     {method: 'POST', body: personaStringJSON});
@@ -34,18 +34,19 @@ class Notas {
         document.querySelector("#panelMsgContenido").innerHTML = "";
     }
 
-    static actualizar() {
+    static actualizar( paramID ) {
         console.log("[..] actualizando, Programando el Cliente Javascript");
         // Aqui los alumnos lograran consultar al Server!! Tarannn!
         let valorPedido = "";
         let valorRespuesta = "";
 // INPUT
-        valorPedido = document.querySelector("#nota_titulo").value;
+//        valorPedido = document.querySelector("#nota_titulo").value;
 //1. Procesamiento
         valorRespuesta = valorPedido;
         //1.1 le envio un dato de parametro al Servidor    
         const traer = async () => {
-            let persona = Notas.obtenerDatosDelFormularioCliente(); // obtengo OK, O tendria que lanzar Exception
+            let persona = Notas.obtenerDatosDelFormularioCliente( paramID ); // obtengo OK, O tendria que lanzar Exception
+            persona.id = paramID;
             let personaStringJSON = JSON.stringify(persona);
             let respuesta = await fetch("NotaServer",
                     {method: 'PUT', body: personaStringJSON});
@@ -67,12 +68,12 @@ class Notas {
         let valorPedido = "";
         let valorRespuesta = "";
 // INPUT
-        valorPedido = document.querySelector("#nota_titulo").value;
+//        valorPedido = document.querySelector("#nota_titulo").value;
 //1. Procesamiento
         valorRespuesta = valorPedido;
         //1.1 le envio un dato de parametro al Servidor    
         const traer = async () => {
-            let persona = Notas.obtenerDatosDelFormularioCliente(); // obtengo OK, O tendria que lanzar Exception
+            let persona = Notas.obtenerDatosDelFormularioCliente(paramID); // obtengo OK, O tendria que lanzar Exception
             persona.id = paramID;
             let personaStringJSON = JSON.stringify(persona);
             let respuesta = await fetch("NotaServer?&parametro=" + personaStringJSON,
@@ -95,12 +96,12 @@ class Notas {
         let valorPedido = "";
         let valorRespuesta = "";
 // INPUT
-        valorPedido = document.querySelector("#nota_titulo").value;
+//        valorPedido = document.querySelector("#nota_titulo").value;
 //1. Procesamiento
         valorRespuesta = valorPedido;
         //1.1 le envio un dato de parametro al Servidor    
         const traer = async () => {
-            let persona = Notas.obtenerDatosDelFormularioCliente(); // obtengo OK, O tendria que lanzar Exception
+            let persona = Notas.obtenerDatosDelFormularioCliente(""); // obtengo OK, O tendria que lanzar Exception
             let personaStringJSON = JSON.stringify(persona);
             let respuesta = await fetch("NotaServer?&parametro=" + personaStringJSON,
                     {method: 'GET'});
@@ -123,11 +124,11 @@ class Notas {
         console.log("[OK] Consultar(), Programando el Cliente Javascript");
     }
 
-    static obtenerDatosDelFormularioCliente() {
+    static obtenerDatosDelFormularioCliente( paramID ) {
         let persona = {};
-        persona.titulo = document.querySelector("#nota_titulo").value;
-        persona.descripcion = document.querySelector("#nota_descripcion").value;
-        persona.precio = document.querySelector("#nota_precio").value;
+        persona.titulo = document.querySelector("#nota_titulo_" + paramID ).value;
+        persona.descripcion = document.querySelector("#nota_descripcion_" + paramID ).value;
+        persona.precio = document.querySelector("#nota_precio_" + paramID ).value;
         if( persona.precio == "" ){
             persona.precio = 0;
         }
@@ -135,8 +136,8 @@ class Notas {
         // 2. tambien verificare fechas validas, campos vacios, campos obligatorios
         //   2.1. error en campos lanzo exepcion.
         // 3. limpio los campos visualtes
-        document.querySelector("#nota_titulo").value = "";
-        document.querySelector("#nota_descripcion").value = "";
+        document.querySelector("#nota_titulo_").value = "";
+        document.querySelector("#nota_descripcion_").value = "";
         return persona;
     }
 }
