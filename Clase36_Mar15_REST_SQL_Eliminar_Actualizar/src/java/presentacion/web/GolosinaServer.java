@@ -93,9 +93,33 @@ public class GolosinaServer extends HttpServlet {
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // HTTP PUT === SQL UPDATE
-        System.out.println("!!! GoloServer PUT Actualizar ");
-        resp.getWriter().print("\"GoloServer PUT Actualizar \"");
-
+// UPDATE `golosinas` SET `gol_precio` = ?, gol_titulo = ?, gol_descripcion = ? WHERE `golosinas`.`gol_id` = ?;
+        Golosina param = CONVERTIR.fromJson( req.getReader(), Golosina.class);
+        System.out.println("!!! GoloServer POST insertar ");
+        //response.getWriter().print("\"GoloServer POST insertar \"");
+//        parametroEnElServer.setDescripcion( parametroEnElServer.getDescripcion() + new java.util.Date() );
+        Connection conectar = null; // 1. Conectarme a la base de datos  
+        try{ // intento Insertar en la Base
+            Class.forName("com.mysql.jdbc.Driver");
+            conectar = DriverManager.getConnection(
+                    "jdbc:mysql://localhost/distribuidora_db",
+                    "educacion","educacion");
+            PreparedStatement sentencia = conectar.prepareStatement(
+" UPDATE golosinas SET gol_precio = ?, gol_titulo = ?, gol_descripcion = ? WHERE gol_id = ?;    " );
+            sentencia.setDouble(1, param.getPrecio()  );
+            sentencia.setString(2, param.getTitulo() );
+            sentencia.setString(3, param.getDescripcion() );
+//            sentencia.setString(3, String.valueOf(  param.getPrecio() ) );
+            sentencia.setString(4, param.getId() ); // where ID
+            sentencia.execute();
+            // Mensaje de OK
+            resp.getWriter().print( CONVERTIR.toJson( "OK" )  );
+        }catch(Exception e){ // Si No puedo Insertar en la base Error
+            e.printStackTrace();
+            // Mensaje de Error
+            resp.getWriter().print(CONVERTIR.toJson("Error: " + e.getMessage()));
+        }
+        
     }
 
     @Override
