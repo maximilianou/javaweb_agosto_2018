@@ -93,8 +93,39 @@ public class NotaServer extends HttpServlet {
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 // aqui seria para consultar HTTP PUT === SQL UPDATE
-        System.out.println("!!! Servidor: Metodo PUT, actualizar");
-        resp.getWriter().print("\"Servidor: Metodo PUT, actualizar\"");
+// UPDATE comidas SET com_titulo = ?, com_descripcion = ?, com_precio = ? WHERE comidas.com_id = ?;
+// https://www.w3schools.com/sql/sql_update.asp 
+
+        Nota param = CONVERTIR.fromJson(req.getReader(), Nota.class); // asignarle lo que envio por web\
+
+        System.out.println("!!! Servidor: Metodo Post, insertar");
+// Procesamiento de datos, insertar en la base de datos con SQL
+
+// 0. Cargar el Driver, en este caso, com.mysql.jdbc.Driver
+// 1. Conectar con la base de datos
+// 2. Preparar Sentencia
+// 3. Ejecutar Sentencia
+        Connection conectar = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            conectar = DriverManager.getConnection(
+                    "jdbc:mysql://localhost/menu_db",
+                    "educacion","educacion");
+            PreparedStatement sentencia = conectar.prepareStatement(
+                    " UPDATE comidas SET com_titulo = ?, com_descripcion = ?, com_precio = ? WHERE comidas.com_id = ?; " );
+            sentencia.setString(1, param.getTitulo());
+            sentencia.setString(2, param.getDescripcion());
+            sentencia.setString(3, String.valueOf( param.getPrecio() ));
+            sentencia.setString(4, param.getId());
+            sentencia.execute();
+        resp.getWriter().print(
+                CONVERTIR.toJson( "OK"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        resp.getWriter().print(
+                CONVERTIR.toJson( "Error: " + e.getMessage()));
+        }
+
 
     }
 
